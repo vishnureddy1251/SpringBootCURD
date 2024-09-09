@@ -45,13 +45,13 @@ public class StudentController {
 
         Optional<Student> student = studentRepo.findById(id);
         if (student.isPresent()){
-            Student updateStudent = student.get();
-            updateStudent.setStudentName(updateStudent.getStudentName());
-            updateStudent.setStudentEmail(updateStudent.getStudentEmail());
-            updateStudent.setStudentAddress(updateStudent.getStudentAddress());
+            Student studentToUpdate = student.get();
+            studentToUpdate.setStudentName(studentToUpdate.getStudentName());
+            studentToUpdate.setStudentEmail(studentToUpdate.getStudentEmail());
+            studentToUpdate.setStudentAddress(studentToUpdate.getStudentAddress());
 
-            Student studentObj = studentRepo.save(updateStudent);
-            return new ResponseEntity<>(studentRepo.save(student.get()), HttpStatus.OK);
+            Student studentObj = studentRepo.save(studentToUpdate);
+            return new ResponseEntity<>(studentRepo.save(studentToUpdate), HttpStatus.OK);
         }else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }

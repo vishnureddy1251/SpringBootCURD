@@ -41,17 +41,17 @@ public class StudentController {
     }
 
     @PutMapping ("/updateStudent/{id}")
-    public ResponseEntity<Student> updateStudent(@PathVariable Long id){
+    public ResponseEntity<Student> updateStudent(@PathVariable Long id, @RequestBody Student student){
 
-        Optional<Student> student = studentRepo.findById(id);
-        if (student.isPresent()){
-            Student studentToUpdate = student.get();
+        Optional<Student> optionalStudent = studentRepo.findById(id);
+        if (optionalStudent.isPresent()){
+            Student studentToUpdate = optionalStudent.get();
             studentToUpdate.setStudentName(studentToUpdate.getStudentName());
             studentToUpdate.setStudentEmail(studentToUpdate.getStudentEmail());
             studentToUpdate.setStudentAddress(studentToUpdate.getStudentAddress());
 
             Student studentObj = studentRepo.save(studentToUpdate);
-            return new ResponseEntity<>(studentRepo.save(studentToUpdate), HttpStatus.OK);
+            return new ResponseEntity<>(studentObj, HttpStatus.OK);
         }else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }

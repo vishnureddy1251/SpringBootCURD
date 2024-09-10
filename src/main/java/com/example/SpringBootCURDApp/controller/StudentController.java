@@ -28,8 +28,9 @@ public class StudentController {
     @GetMapping("/getStudent")
     public ResponseEntity<List<Student>> getStudent() {
         try {
-            List<Student> studentList = new ArrayList<>();
-            studentRepo.findAll().forEach(studentList::add);  // Call 'findAll' on the injected instance
+            /*List<Student> studentList = new ArrayList<>();
+            studentRepo.findAll().forEach(studentList::add);   Call 'findAll' on the injected instance*/
+            List<Student> studentList = studentRepo.findAll();  // Use bulk 'Collection.addAll()' call
 
             if (studentList.isEmpty()) {
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);

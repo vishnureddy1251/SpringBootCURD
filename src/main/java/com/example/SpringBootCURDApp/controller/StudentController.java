@@ -46,9 +46,9 @@ public class StudentController {
         Optional<Student> optionalStudent = studentRepo.findById(id);
         if (optionalStudent.isPresent()){
             Student studentToUpdate = optionalStudent.get();
-            studentToUpdate.setStudentName(studentToUpdate.getStudentName());
-            studentToUpdate.setStudentEmail(studentToUpdate.getStudentEmail());
-            studentToUpdate.setStudentAddress(studentToUpdate.getStudentAddress());
+            studentToUpdate.setStudentName(student.getStudentName());
+            studentToUpdate.setStudentEmail(student.getStudentEmail());
+            studentToUpdate.setStudentAddress(student.getStudentAddress());
 
             Student studentObj = studentRepo.save(studentToUpdate);
             return new ResponseEntity<>(studentObj, HttpStatus.OK);
